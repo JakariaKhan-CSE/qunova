@@ -1,5 +1,13 @@
 # qunova
 
+core =  Feature-independent. Network, theme, shared widgets।
+features  =  each feature self-contained. 3 layer:
+
+data =  models + repository (API call)
+provider = business logic + state
+ui  =  screens + feature-specific widgets
+
+
 A new Flutter project.
 
 ## Getting Started
