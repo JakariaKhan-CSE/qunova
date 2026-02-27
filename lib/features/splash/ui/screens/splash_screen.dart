@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:qunova/core/constants/app_color.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -61,12 +62,16 @@ class _SplashScreenState extends State<SplashScreen> {
           Positioned(
             top: -65,
             right: -60,
-            child: Container(
-              height: 180,
-              width: 180,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                shape: BoxShape.circle,
+            child: AnimatedOpacity(
+              opacity: _startExit ? 0.0 : 1.0,
+              duration: 1400.ms,
+              child: Container(
+                height: 180,
+                width: 180,
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle,
+                ),
               ),
             ),
           ).animate().slide(
@@ -78,12 +83,16 @@ class _SplashScreenState extends State<SplashScreen> {
           Positioned(
             bottom: -140,
             left: -140,
-            child: Container(
-              height: 360,
-              width: 360,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                shape: BoxShape.circle,
+            child: AnimatedOpacity(
+              opacity: _startExit ? 0.0 : 1.0,
+              duration: 1400.ms,
+              child: Container(
+                height: 360,
+                width: 360,
+                decoration: BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle,
+                ),
               ),
             ),
           ).animate().slide(
@@ -105,10 +114,51 @@ class _SplashScreenState extends State<SplashScreen> {
                       decoration: BoxDecoration(
                         color: AppColors.primary,
                         borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(24),
-                          topLeft: Radius.circular(24),
+                          topRight: Radius.circular(30),
+                          topLeft: Radius.circular(30),
                         ),
                       ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 56),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Welcome',style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 40,
+                        color: AppColors.background
+                      ),),
+                      SizedBox(height: 8,),
+                      Text('Lorem ipsum dolor sit amet consectetur. Pellentesque fames lobortis vestibulum nisi nulla egestas nibh tincidunt nunc. ',style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: AppColors.background
+                      ),),
+                      SizedBox(height: 30,),
+                      GestureDetector(
+                        onTap: () {
+                          // navigate to other page
+                        },
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.background,
+                            borderRadius: BorderRadius.circular(60)
+                          ),
+                          child: Center(
+                            child: Text('Getting Started',style: GoogleFonts.inter(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: AppColors.secondary
+                            ),),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                     ).animate().slideY(
                       begin: 1.2,
                       end: 0.0,
