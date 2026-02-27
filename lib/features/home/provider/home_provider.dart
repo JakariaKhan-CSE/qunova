@@ -16,4 +16,12 @@ class HomeProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+  // contact, recent select
+int _index = 0;
+int get index => _index;
+void setIndex(int index){
+  _index = index;
+  notifyListeners();
+}
+
 }

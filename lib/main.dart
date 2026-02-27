@@ -5,19 +5,23 @@ import 'package:provider/provider.dart';
 import 'package:qunova/features/home/provider/home_provider.dart';
 import 'package:qunova/features/splash/ui/screens/splash_screen.dart';
 
-void main(){
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark
-  ));
-  runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => HomeProvider(),)
-      ],
-      child: MyApp()));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => HomeProvider())],
+      child: MyApp(),
+    ),
+  );
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home:const SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
