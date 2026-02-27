@@ -66,6 +66,40 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 20),
+                  SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: homeProvider.categories.length,
+                      itemBuilder: (context, index) {
+                        final data = homeProvider.categories[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 15),
+                        child: GestureDetector(
+                          onTap: () {
+                            homeProvider.setCategoryIndex(index);
+                          },
+                          child: Column(
+                           // crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: homeProvider.categoryIndex==index ? AppColors.deepPrimary : Colors.grey),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(Icons.image_outlined),
+                              ),
+                              SizedBox(height: 5,),
+                              Text(data.name??'',style: AppTextStyles.textStyle(14, FontWeight.w500, homeProvider.categoryIndex==index ? AppColors.deepPrimary : Color(0xFF6F7D91)),)
+                            ],
+                          ),
+                        ),
+                      );
+                    },),
+                  )
 
                 ],
               );

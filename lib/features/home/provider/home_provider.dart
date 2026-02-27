@@ -72,4 +72,11 @@ class HomeProvider extends ChangeNotifier {
     _index = index;
     notifyListeners();
   }
+  // category index
+  int _categoryIndex = 0;
+  int get categoryIndex => _categoryIndex;
+  void setCategoryIndex(int index) {
+    _categoryIndex = index;
+    notifyListeners();
+  }
 }
