@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 abstract final class AppColors {
   // Brand
-  static const primary = Color(0xFF0D8B6A);
+  static const primary = Color(0xFF098268);
+
   static const primaryLight = Color(0xFF1AAE84);
   static const accent = Color(0xFFF5A623);
 
@@ -12,7 +13,8 @@ abstract final class AppColors {
   static const gradientBottom = Color(0xFFFFFFFF);
 
   // General
-  static const background = Color(0xFFF8F9FA);
+  static const background = Color(0xFFFFFFFF);
+
   static const surface = Colors.white;
   static const textPrimary = Color(0xFF1A1A2E);
   static const textSecondary = Color(0xFF6B7280);
