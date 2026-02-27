@@ -5,7 +5,7 @@ import 'package:qunova/features/home/data/models/response_data_model.dart';
 import 'package:http/http.dart' as http;
 
 class HomeReposiotry {
-  Future<BackendResModel> fetchData() async {
+  static Future<BackendResModel> fetchData() async {
     http.Response? response;
     Map<String, String> requestHeaders = {"Content-Type": "application/json"};
     try {
