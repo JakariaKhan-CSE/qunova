@@ -69,7 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 20),
                   SizedBox(
                     height: 200,
-                    child: ListView.builder(
+                    child: homeProvider.loading ? Center(
+                      child: SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator()),
+                    ) : ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: homeProvider.categories.length,
                       itemBuilder: (context, index) {
