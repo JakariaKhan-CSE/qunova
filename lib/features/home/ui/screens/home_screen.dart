@@ -66,9 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  EmptyState(onTap: () {
-                    print('Click');
-                  },),
+
                 ],
               );
             },
