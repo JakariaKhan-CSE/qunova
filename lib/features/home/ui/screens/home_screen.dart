@@ -4,6 +4,8 @@ import 'package:qunova/core/constants/app_color.dart';
 import 'package:qunova/core/constants/app_text_style.dart';
 import 'package:qunova/features/home/provider/home_provider.dart';
 
+import '../../../../core/widgets/empty_state.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -30,30 +32,46 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.all(20.0),
           child: Consumer<HomeProvider>(
             builder: (context, homeProvider, child) {
-             return Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               mainAxisAlignment: MainAxisAlignment.start,
-               children: [
-                 SizedBox(height: 40),
-                 Row(
-                   children: [
-                     _headerSelect(text: 'Contact',homeProvider: homeProvider,index: 0,isSelected: homeProvider.index == 0),
-                     SizedBox(width: 25),
-                     _headerSelect(text: 'Recent',homeProvider: homeProvider,index: 1,isSelected: homeProvider.index == 1),
-                     Spacer(),
-                     Image.asset('assests/icon/search.png', height: 25, width: 25),
-                     SizedBox(width: 30),
-                     Image.asset(
-                       'assests/icon/align-right.png',
-                       height: 25,
-                       width: 25,
-                     ),
-                   ],
-                 ),
-               ],
-             );
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 40),
+                  Row(
+                    children: [
+                      _headerSelect(
+                        text: 'Contact',
+                        homeProvider: homeProvider,
+                        index: 0,
+                        isSelected: homeProvider.index == 0,
+                      ),
+                      SizedBox(width: 25),
+                      _headerSelect(
+                        text: 'Recent',
+                        homeProvider: homeProvider,
+                        index: 1,
+                        isSelected: homeProvider.index == 1,
+                      ),
+                      Spacer(),
+                      Image.asset(
+                        'assests/icon/search.png',
+                        height: 25,
+                        width: 25,
+                      ),
+                      SizedBox(width: 30),
+                      Image.asset(
+                        'assests/icon/align-right.png',
+                        height: 25,
+                        width: 25,
+                      ),
+                    ],
+                  ),
+                  EmptyState(onTap: () {
+                    print('Click');
+                  },),
+                ],
+              );
             },
-
           ),
         ),
       ),
@@ -80,10 +98,12 @@ class _HomeScreenState extends State<HomeScreen> {
               isSelected ? AppColors.subSecondary : AppColors.grey,
             ),
           ),
-          if(isSelected)
-          Container(width: 80, height: 2, color: AppColors.primary),
+          if (isSelected)
+            Container(width: 80, height: 2, color: AppColors.primary),
         ],
       ),
     );
   }
 }
+
+
