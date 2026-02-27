@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:qunova/features/home/ui/screens/home_screen.dart';
 
 import '../../../../core/constants/app_color.dart';
 class ModalConatiner extends StatelessWidget {
@@ -58,7 +59,8 @@ class ModalConatiner extends StatelessWidget {
                 SizedBox(height: 30),
                 GestureDetector(
                   onTap: () {
-                    // navigate to other page
+                    // navigate to home page
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen(),));
                   },
                   child: Container(
                     height: 50,
