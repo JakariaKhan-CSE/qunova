@@ -1,25 +1,32 @@
 # qunova
 
-core =  Feature-independent. Network, theme, shared widgets।
-features  =  each feature self-contained. 3 layer:
+# Setup Steps
+Clone the project:
+git clone https://github.com/JakariaKhan-CSE/qunova.git or git clone git@github.com:JakariaKhan-CSE/qunova.git
 
-data =  models + repository (API call)
-provider = business logic + state
-ui  =  screens + feature-specific widgets
+Install dependencies:
+flutter pub get
+
+# Flutter version
+Flutter 3.41.2
+
+# How to run the app
+flutter run
+
+# assumptions made
+Asset Paths: icons are stored in assests/icon/.
+
+API Response: The BackendResModel the server returns a standard JSON structure with status, message, and data fields.
+
+Debounce: A 500ms delay is assumed for search inputs to optimize API/filtering performance.
+
+# Libraries used & why
+Provider: Efficient state management and dependency injection.
+
+http: Handles REST API communication with the backend.
+
+flutter_animate: Adds polished, "pro-level" animations to the UI.
+
+google_fonts: Access to high-quality typography without manual font loading.
 
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
