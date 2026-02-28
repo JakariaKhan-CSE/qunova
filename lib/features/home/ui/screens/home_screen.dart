@@ -5,6 +5,8 @@ import 'package:qunova/core/constants/app_text_style.dart';
 import 'package:qunova/features/home/provider/home_provider.dart';
 
 import '../../../../core/widgets/empty_state.dart';
+import '../widgets/category_list.dart';
+import '../widgets/contact_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -72,115 +74,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: 20),
-                SizedBox(
-                  height: 90,
-                  child: homeProvider.loading
-                      ? Center(
-                          child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                      : ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: homeProvider.categories.length,
-                          itemBuilder: (context, index) {
-                            final data = homeProvider.categories[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: GestureDetector(
-                                onTap: () {
-                                  homeProvider.setCategoryIndex(index);
-                                  homeProvider.setCategory(data.id??'all');
-                                },
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color:
-                                              homeProvider.categoryIndex ==
-                                                  index
-                                              ? AppColors.deepPrimary
-                                              : Colors.grey,
-                                        ),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Icon(Icons.image_outlined),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      data.name ?? '',
-                                      style: AppTextStyles.textStyle(
-                                        14,
-                                        FontWeight.w500,
-                                        homeProvider.categoryIndex == index
-                                            ? AppColors.deepPrimary
-                                            : Color(0xFF6F7D91),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                ),
+                CategoryList(homeProvider: homeProvider,),
                 SizedBox(height: 10),
-                Expanded(
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: homeProvider.filteredContacts.length,
-                    itemBuilder: (context, index) {
-                      final data = homeProvider.filteredContacts[index];
-                      return Column(
-                        children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 25,
-                                backgroundImage: NetworkImage(
-                                  data.avatarUrl ??
-                                      'https://png.pngtree.com/png-clipart/20230917/original/pngtree-no-image-available-icon-flatvector-illustration-thumbnail-graphic-illustration-vector-png-image_12323920.png',
-                                ),
-                              ),
-                              SizedBox(width: 15),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    data.name ?? 'unknown',
-                                    style: AppTextStyles.textStyle(
-                                      18,
-                                      FontWeight.w500,
-                                      Color(0xFF475569),
-                                    ),
-                                  ),
-                                  Text(
-                                    data.phone ?? 'not find',
-                                    style: AppTextStyles.textStyle(
-                                      16,
-                                      FontWeight.w400,
-                                      Color(0xFF64758B),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 5),
-                         if(homeProvider.filteredContacts.length-1 != index)
-                          Divider(color: Color(0xFFCBD5E1),),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                homeProvider.filteredContacts.length==0 ?
+                    Column(
+                      children: [
+                        SizedBox(height: 40,),
+                        EmptyState(onTap: () {
+                          // write add user function
+                          // open modal bottom sheet
+                        },)
+                      ],
+                    )
+                    : ContactList(homeProvider: homeProvider,),
               ],
             );
           },
@@ -216,3 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+
+
