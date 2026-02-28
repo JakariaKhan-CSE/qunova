@@ -1,4 +1,4 @@
-// # filtering, searching logic
+// filtering, searching logic
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -35,8 +35,8 @@ class HomeProvider extends ChangeNotifier {
       bool matchesCategory =
           _selectCategoryId == 'all' || contact.categoryId == _selectCategoryId;
       bool matchesSearch =
-          (contact.name?.toLowerCase().contains(_searchQuery.toLowerCase()))?? false ||
-          (contact.phone?.contains(_searchQuery)??false);
+          (contact.name?.toLowerCase().contains(_searchQuery.toLowerCase())) ??
+          false || (contact.phone?.contains(_searchQuery) ?? false);
       return matchesCategory && matchesSearch;
     }).toList();
   }
@@ -72,6 +72,15 @@ class HomeProvider extends ChangeNotifier {
     _index = index;
     notifyListeners();
   }
+
+  // search box open close
+  bool _isOpenSearch = false;
+  bool get isOpenSearch => _isOpenSearch;
+  void setSearchBox(bool val) {
+    _isOpenSearch = val;
+    notifyListeners();
+  }
+
   // category index
   int _categoryIndex = 0;
   int get categoryIndex => _categoryIndex;

@@ -44,6 +44,22 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 40),
+                homeProvider.isOpenSearch ?
+                    TextField(
+                      onChanged: (value) {
+                        print(value);
+                        homeProvider.updateSearchQuery(value);
+                      },
+                      decoration: InputDecoration(
+                        suffixIcon: GestureDetector(
+                            onTap: () {
+                              homeProvider.setSearchBox(false);
+                              homeProvider.updateSearchQuery('');
+                            },
+                            child: Image.asset('assests/icon/x.png',height: 30,width: 30,))
+                      ),
+                    )
+                    :
                 Row(
                   children: [
                     _headerSelect(
@@ -60,10 +76,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       isSelected: homeProvider.index == 1,
                     ),
                     Spacer(),
-                    Image.asset(
-                      'assests/icon/search.png',
-                      height: 25,
-                      width: 25,
+                    GestureDetector(
+                      onTap: () {
+                        homeProvider.setSearchBox(true);
+                      },
+                      child: Image.asset(
+                        'assests/icon/search.png',
+                        height: 25,
+                        width: 25,
+                      ),
                     ),
                     SizedBox(width: 30),
                     Image.asset(
