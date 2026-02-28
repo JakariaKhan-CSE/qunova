@@ -34,7 +34,7 @@ class EmptyState extends StatelessWidget {
           SizedBox(height: 25),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: CustomButton(onTap: onTap),
+            child: CustomButton(onTap: onTap,btnText: 'Add New Contact',),
           ),
         ],
       ),

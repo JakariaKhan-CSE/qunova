@@ -16,9 +16,9 @@ class CategoryList extends StatelessWidget {
       child: homeProvider.loading
           ? Center(
         child: SizedBox(
-          height: 50,
-          width: 50,
-          child: CircularProgressIndicator(),
+          height: 30,
+          width: 30,
+          child: CircularProgressIndicator(color: Colors.black,),
         ),
       )
           : homeProvider.categories.length==0 ? Text('No category found') : ListView.builder(
