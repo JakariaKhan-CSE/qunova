@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/app_color.dart';
 import '../constants/app_text_style.dart';
+import 'custom_button.dart';
 class EmptyState extends StatelessWidget {
   final VoidCallback onTap;
   const EmptyState({
@@ -33,30 +34,11 @@ class EmptyState extends StatelessWidget {
           SizedBox(height: 25),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: GestureDetector(
-              onTap: onTap,
-              child: Container(
-                height: 60,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(60),
-                ),
-                child: Center(
-                  child: Text(
-                    'Add New Contact',
-                    style: AppTextStyles.textStyle(
-                      16,
-                      FontWeight.w500,
-                      AppColors.background,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            child: CustomButton(onTap: onTap),
           ),
         ],
       ),
     );
   }
 }
+

@@ -39,6 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: () {
           print('Floating button click');
           // open bottom modal sheet
+          showModalBottomSheet(
+            backgroundColor: AppColors.background,
+            context: context,
+            builder: (context) {
+              return Padding(padding: EdgeInsets.all(30));
+            },
+          );
         },
         child: Image.asset(
           'assests/icon/Floating Icon.png',
@@ -129,7 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 20),
                 CategoryList(homeProvider: homeProvider),
                 SizedBox(height: 10),
-                homeProvider.filteredContacts.length == 0
+                homeProvider.filteredContacts.length == 0 &&
+                        homeProvider.loading == false
                     ? Column(
                         children: [
                           SizedBox(height: 40),
