@@ -44,70 +44,93 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 40),
-                homeProvider.isOpenSearch ?
-                    TextField(
-                      onChanged: (value) {
-                        print(value);
-                        homeProvider.updateSearchQuery(value);
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: GestureDetector(
+                homeProvider.isOpenSearch
+                    ? TextField(
+                        onChanged: (value) {
+                          print(value);
+                          homeProvider.updateSearchQuery(value);
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(color: Color(0xFFCBD5E1)),
+                          ),
+                          isDense: true,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(color: Color(0xFFCBD5E1)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(color: Color(0xFFCBD5E1)),
+                          ),
+                          suffixIcon: GestureDetector(
                             onTap: () {
                               homeProvider.setSearchBox(false);
                               homeProvider.updateSearchQuery('');
                             },
-                            child: Image.asset('assests/icon/x.png',height: 30,width: 30,))
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Image.asset(
+                                'assests/icon/x.png',
+                                height: 20,
+                                width: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Row(
+                        children: [
+                          _headerSelect(
+                            text: 'Contact',
+                            homeProvider: homeProvider,
+                            index: 0,
+                            isSelected: homeProvider.index == 0,
+                          ),
+                          SizedBox(width: 25),
+                          _headerSelect(
+                            text: 'Recent',
+                            homeProvider: homeProvider,
+                            index: 1,
+                            isSelected: homeProvider.index == 1,
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              homeProvider.setSearchBox(true);
+                            },
+                            child: Image.asset(
+                              'assests/icon/search.png',
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
+                          SizedBox(width: 30),
+                          Image.asset(
+                            'assests/icon/align-right.png',
+                            height: 25,
+                            width: 25,
+                          ),
+                        ],
                       ),
-                    )
-                    :
-                Row(
-                  children: [
-                    _headerSelect(
-                      text: 'Contact',
-                      homeProvider: homeProvider,
-                      index: 0,
-                      isSelected: homeProvider.index == 0,
-                    ),
-                    SizedBox(width: 25),
-                    _headerSelect(
-                      text: 'Recent',
-                      homeProvider: homeProvider,
-                      index: 1,
-                      isSelected: homeProvider.index == 1,
-                    ),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        homeProvider.setSearchBox(true);
-                      },
-                      child: Image.asset(
-                        'assests/icon/search.png',
-                        height: 25,
-                        width: 25,
-                      ),
-                    ),
-                    SizedBox(width: 30),
-                    Image.asset(
-                      'assests/icon/align-right.png',
-                      height: 25,
-                      width: 25,
-                    ),
-                  ],
-                ),
                 SizedBox(height: 20),
-                CategoryList(homeProvider: homeProvider,),
+                CategoryList(homeProvider: homeProvider),
                 SizedBox(height: 10),
-                homeProvider.filteredContacts.length==0 ?
-                    Column(
-                      children: [
-                        SizedBox(height: 40,),
-                        EmptyState(onTap: () {
-                          // write add user function
-                          // open modal bottom sheet
-                        },)
-                      ],
-                    )
-                    : ContactList(homeProvider: homeProvider,),
+                homeProvider.filteredContacts.length == 0
+                    ? Column(
+                        children: [
+                          SizedBox(height: 40),
+                          EmptyState(
+                            onTap: () {
+                              // write add user function
+                              // open modal bottom sheet
+                            },
+                          ),
+                        ],
+                      )
+                    : ContactList(homeProvider: homeProvider),
               ],
             );
           },
@@ -143,7 +166,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-
-
