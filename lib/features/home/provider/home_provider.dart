@@ -35,8 +35,8 @@ class HomeProvider extends ChangeNotifier {
       bool matchesCategory =
           _selectCategoryId == 'all' || contact.categoryId == _selectCategoryId;
       bool matchesSearch =
-          (contact.name!.toLowerCase().contains(_searchQuery.toLowerCase())) ||
-          (contact.phone!.contains(_searchQuery));
+          (contact.name?.toLowerCase().contains(_searchQuery.toLowerCase()))?? false ||
+          (contact.phone?.contains(_searchQuery)??false);
       return matchesCategory && matchesSearch;
     }).toList();
   }

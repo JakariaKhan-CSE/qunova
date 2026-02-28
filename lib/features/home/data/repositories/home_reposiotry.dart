@@ -18,7 +18,7 @@ class HomeReposiotry {
       throw Exception(e.toString());
     }
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body));
+      //print(jsonDecode(response.body));
       return BackendResModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to get data');
