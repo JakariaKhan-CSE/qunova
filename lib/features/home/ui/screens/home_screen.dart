@@ -4,6 +4,7 @@ import 'package:qunova/core/constants/app_color.dart';
 import 'package:qunova/core/constants/app_text_style.dart';
 import 'package:qunova/features/home/provider/home_provider.dart';
 
+import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/empty_state.dart';
 import '../widgets/category_list.dart';
 import '../widgets/contact_list.dart';
@@ -40,10 +41,22 @@ class _HomeScreenState extends State<HomeScreen> {
           print('Floating button click');
           // open bottom modal sheet
           showModalBottomSheet(
+
             backgroundColor: AppColors.background,
             context: context,
             builder: (context) {
-              return Padding(padding: EdgeInsets.all(30));
+              return Padding(padding: EdgeInsets.all(30),
+              child: Container(
+                  width: double.infinity,
+                child: Column(
+                  children: [
+                    SizedBox(height: 30,),
+                    CustomTextField(hintText: 'Name',)
+                  ],
+                ),
+              ),
+
+              );
             },
           );
         },
@@ -63,42 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 SizedBox(height: 40),
                 homeProvider.isOpenSearch
-                    ? TextField(
-                        onChanged: (value) {
-                          print(value);
-                          homeProvider.updateSearchQuery(value);
-                        },
-                        decoration: InputDecoration(
-                          hintText: 'Search',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(color: Color(0xFFCBD5E1)),
-                          ),
-                          isDense: true,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(color: Color(0xFFCBD5E1)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                            borderSide: BorderSide(color: Color(0xFFCBD5E1)),
-                          ),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              homeProvider.setSearchBox(false);
-                              homeProvider.updateSearchQuery('');
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Image.asset(
-                                'assests/icon/x.png',
-                                height: 20,
-                                width: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
+                    ? _searchField(homeProvider)
                     : Row(
                         children: [
                           _headerSelect(
@@ -171,6 +149,45 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _searchField(HomeProvider homeProvider) {
+    return TextField(
+                      onChanged: (value) {
+                        print(value);
+                        homeProvider.updateSearchQuery(value);
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'Search',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(color: Color(0xFFCBD5E1)),
+                        ),
+                        isDense: true,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(color: Color(0xFFCBD5E1)),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: BorderSide(color: Color(0xFFCBD5E1)),
+                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            homeProvider.setSearchBox(false);
+                            homeProvider.updateSearchQuery('');
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Image.asset(
+                              'assests/icon/x.png',
+                              height: 20,
+                              width: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+  }
+
   Widget _headerSelect({
     required HomeProvider homeProvider,
     required String text,
@@ -198,3 +215,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
