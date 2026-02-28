@@ -35,6 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          print('Floating button click');
+          // open bottom modal sheet
+        },
+        child: Image.asset(
+          'assests/icon/Floating Icon.png',
+          height: 100,
+          width: 100,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Consumer<HomeProvider>(
@@ -126,6 +137,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               // write add user function
                               // open modal bottom sheet
+                            },
+                          ),
+                        ],
+                      )
+                    : homeProvider.index == 1
+                    ? Column(
+                        children: [
+                          SizedBox(height: 40),
+                          EmptyState(
+                            onTap: () {
+                              // write add user function
+                              // open modal bottom sheet
+                              print('Add new contact');
                             },
                           ),
                         ],
